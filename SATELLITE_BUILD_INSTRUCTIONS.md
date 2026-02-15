@@ -85,7 +85,7 @@ Update Twitter Card (~55 chars title, ~105 chars description):
   "parentOrganization": {
     "@type": "Organization",
     "name": "Antek Automation",
-    "url": "https://antekautomation.com"
+    "url": "https://www.antekautomation.com"
   },
   "areaServed": ["[CITY]", "[NEARBY_TOWNS]", "Hampshire", "South of England"],
   "serviceType": ["AI Voice Agents", "AI Chatbots", "Workflow Automation", "Business Process Automation", "AI Receptionist", "Automated Phone Answering"],
@@ -102,7 +102,7 @@ Update Twitter Card (~55 chars title, ~105 chars description):
   "url": "https://[DOMAIN]",
   "logo": "https://[DOMAIN]/logo.svg",
   "sameAs": [
-    "https://antekautomation.com",
+    "https://www.antekautomation.com",
     "https://retellai.com/partner/antek-automation"
   ]
 }
@@ -329,7 +329,7 @@ Make the wording unique but include all:
 
 **Partner Line:**
 ```html
-Powered by <a href="https://antekautomation.com" target="_blank" rel="noopener noreferrer">Antek Automation</a> <span class="footer__partner-divider">|</span> <a href="https://retellai.com/partner/antek-automation" target="_blank" rel="noopener noreferrer">Certified Retell AI Partner</a> <span class="footer__partner-divider">|</span> Serving [CITY], [NEARBY_TOWNS] & Hampshire
+Powered by <a href="https://www.antekautomation.com" target="_blank" rel="noopener noreferrer">Antek Automation</a> <span class="footer__partner-divider">|</span> <a href="https://retellai.com/partner/antek-automation" target="_blank" rel="noopener noreferrer">Certified Retell AI Partner</a> <span class="footer__partner-divider">|</span> Serving [CITY], [NEARBY_TOWNS] & Hampshire
 ```
 
 **Cross-Links Section:**
