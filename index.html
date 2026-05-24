@@ -1834,6 +1834,66 @@
       .bp-modal__cal { margin: 0 10px 10px; min-height: 480px; }
     }
 
+  
+    /* ═══ QUICK FORM (1-field callback capture) ═════════════ */
+    .qf-quick {
+      background: var(--bg-secondary, #111827);
+      border: 2px solid var(--accent-secondary, #06b6d4);
+      border-radius: 12px;
+      padding: 18px 18px 16px;
+      margin: 0 0 24px;
+      color: var(--text-primary, #f1f5f9);
+    }
+    .qf-quick__label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--accent-secondary, #06b6d4);
+      font-weight: 700;
+      margin: 0 0 8px;
+    }
+    .qf-quick__row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .qf-quick input[type=tel] {
+      flex: 1 1 200px;
+      padding: 12px 14px;
+      border: 1px solid var(--border, #1e293b);
+      border-radius: 6px;
+      background: var(--bg-primary, #0a0f1c);
+      color: var(--text-primary);
+      font-family: inherit;
+      font-size: 0.95rem;
+    }
+    .qf-quick input[type=tel]:focus {
+      outline: none;
+      border-color: var(--accent-secondary, #06b6d4);
+    }
+    .qf-quick button {
+      padding: 12px 20px;
+      border: 0;
+      border-radius: 6px;
+      background: var(--accent-tertiary, #10b981);
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.92rem;
+      cursor: pointer;
+      transition: filter 0.15s;
+    }
+    .qf-quick button:hover { filter: brightness(1.1); }
+    .qf-quick button:disabled { opacity: 0.6; cursor: not-allowed; }
+    .qf-quick__hint { font-size: 0.75rem; color: var(--text-secondary); margin: 8px 0 0; }
+    .qf-quick__err { font-size: 0.82rem; color: #fb7185; margin: 8px 0 0; font-weight: 600; }
+    .qf-quick__done {
+      padding: 16px;
+      background: rgba(16, 185, 129, 0.12);
+      border-left: 3px solid var(--accent-tertiary, #10b981);
+      border-radius: 6px;
+    }
+    .qf-quick__done strong { display: block; margin-bottom: 4px; color: var(--text-primary); }
+
   </style>
   <script type="application/ld+json">
   {
@@ -2604,6 +2664,21 @@
         </div>
         <div class="contact__grid">
           <div class="contact__form-wrap reveal">
+                          <div class="qf-quick" id="qfQuick">
+                <p class="qf-quick__label">Or get a callback in 1 hour</p>
+                <form id="qfQuickForm" novalidate>
+                  <div class="qf-quick__row">
+                    <input type="tel" id="qfQuickPhone" name="phone" inputmode="tel" required placeholder="Your phone number" aria-label="Your phone number" />
+                    <button type="submit" id="qfQuickBtn">Call me back</button>
+                  </div>
+                  <div aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;">
+                    <label for="qfQuickWebsite">Website</label>
+                    <input type="text" id="qfQuickWebsite" name="website" tabindex="-1" autocomplete="off" />
+                  </div>
+                  <p class="qf-quick__hint">No long-term contracts. We reply within 1 hour Mon–Fri.</p>
+                  <p class="qf-quick__err" id="qfQuickErr" hidden></p>
+                </form>
+              </div>
             <h3>Send Us a Message</h3>
                         <div class="conv-form-trust">
               <strong>Free 30-min discovery call.</strong> No sales pitch. We reply within 1 hour Mon–Fri 9–6.
@@ -3199,14 +3274,9 @@
       }
 
       function show(trigger) {
-        if (shown || sessionSeen()) return;
-        // Suppress if contact section is in viewport (user already converting)
-        if (contact) {
-          var r = contact.getBoundingClientRect();
-          var inView = r.top < window.innerHeight && r.bottom > 0;
-          if (inView) return;
-        }
+        if (shown) return;
         shown = true;
+        // markSeen() retained for analytics breadcrumb, but no longer gates re-open
         markSeen();
         initCal();
         modal.classList.add('visible');
@@ -3243,40 +3313,117 @@
         if (e.key === 'Escape' && modal.classList.contains('visible')) dismiss('esc');
       });
 
-      // Triggers
-      var isDesktop = window.matchMedia('(min-width: 768px)').matches;
-      var scrolled = false;
-      var engagedTimer = null;
-      var safetyTimer = null;
-      var exitHandler = null;
+      // Click-triggered only. Expose openBookingPopup(source) for any CTA.
+      window.openBookingPopup = function (source) {
+        // Reset 'shown' so the popup can re-open even within a session
+        shown = false;
+        show(source || 'cta-click');
+      };
 
-      function onScroll() {
-        var pct = (window.scrollY + window.innerHeight) / document.documentElement.scrollHeight;
-        if (pct > 0.5 && !scrolled) {
-          scrolled = true;
-          engagedTimer = window.setTimeout(function () { show('engaged'); }, 30000);
+      // Auto-wire common Book CTAs (anything in .nav__cta, hero btn-primary
+      // that anchors to #contact, sticky CTA bar 'book' button). Each click
+      // opens the popup instead of jumping to the inline contact section.
+      function wireBookCtas() {
+        var ctas = document.querySelectorAll(
+          'a.nav__cta[href="#contact"], a.btn-primary[href="#contact"], .conv-sticky-cta a[data-conv="book"]'
+        );
+        ctas.forEach(function (el) {
+          el.addEventListener('click', function (e) {
+            e.preventDefault();
+            var src = el.classList.contains('nav__cta') ? 'nav-cta'
+                    : el.classList.contains('btn-primary') ? 'hero-cta'
+                    : el.getAttribute('data-conv') === 'book' ? 'sticky-mobile-cta'
+                    : 'cta-click';
+            window.openBookingPopup(src);
+          });
+        });
+      }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', wireBookCtas);
+      } else {
+        wireBookCtas();
+      }
+    })();
+  </script>
+
+
+  <script>
+    (function () {
+      var form = document.getElementById('qfQuickForm');
+      var box  = document.getElementById('qfQuick');
+      if (!form || !box) return;
+      var WEBHOOK = 'https://antekauto.app.n8n.cloud/webhook/29e3a09b-5b23-489b-a800-a07262afb4cb';
+      var pageStart = Date.now();
+
+      function ctx() {
+        var p = new URLSearchParams(window.location.search);
+        return {
+          utm_source:   p.get('utm_source') || '',
+          utm_medium:   p.get('utm_medium') || '',
+          utm_campaign: p.get('utm_campaign') || '',
+          utm_term:     p.get('utm_term') || '',
+          utm_content:  p.get('utm_content') || '',
+          referrer:     document.referrer || 'direct',
+          page_url:     window.location.href,
+          page_path:    window.location.pathname
+        };
+      }
+
+      function gaIds(cb) {
+        if (typeof window.gtag !== 'function') return cb({});
+        var out = {}, pending = 2, done = function () { if (--pending === 0) cb(out); };
+        try {
+          window.gtag('get', 'G-M4L3MHD9N5', 'client_id', function (cid) { out.ga_client_id = cid; done(); });
+          window.gtag('get', 'G-M4L3MHD9N5', 'session_id', function (sid) { out.ga_session_id = sid; done(); });
+          setTimeout(function () { cb(out); }, 800);
+        } catch (e) { cb({}); }
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var phone = document.getElementById('qfQuickPhone').value.trim();
+        var honey = document.getElementById('qfQuickWebsite').value;
+        var err   = document.getElementById('qfQuickErr');
+        var btn   = document.getElementById('qfQuickBtn');
+        err.hidden = true; err.textContent = '';
+        if (honey) return;
+        if (!phone || phone.replace(/\D/g, '').length < 7) {
+          err.textContent = 'Please enter a valid phone number.';
+          err.hidden = false;
+          return;
         }
-      }
-
-      function onExit(e) {
-        if (e.clientY <= 0) show('exit-intent');
-      }
-
-      function cleanupTriggers() {
-        window.removeEventListener('scroll', onScroll);
-        if (exitHandler) document.removeEventListener('mouseout', exitHandler);
-        if (engagedTimer) window.clearTimeout(engagedTimer);
-        if (safetyTimer) window.clearTimeout(safetyTimer);
-      }
-
-      if (sessionSeen()) return;
-      window.addEventListener('scroll', onScroll, { passive: true });
-      if (isDesktop) {
-        exitHandler = onExit;
-        document.addEventListener('mouseout', exitHandler);
-      }
-      // Safety net: 60s with no scroll → still show
-      safetyTimer = window.setTimeout(function () { if (!scrolled) show('engaged'); }, 60000);
+        btn.disabled = true; btn.textContent = 'Sending…';
+        gaIds(function (ids) {
+          var payload = Object.assign({
+            phone: phone,
+            timestamp: new Date().toISOString(),
+            source: 'satellite_quick_form',
+            form_source: 'portsmouth-ai-quick-form',
+            page_town: 'portsmouth',
+            time_on_page_s: Math.round((Date.now() - pageStart) / 1000)
+          }, ctx(), ids);
+          fetch(WEBHOOK, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          }).then(function (r) {
+            if (!r.ok) throw new Error('HTTP ' + r.status);
+            box.innerHTML = '<div class="qf-quick__done"><strong>Got it — we will call you back</strong>Within 1 hour Mon–Fri 9–6. Outside hours, first thing next working day.</div>';
+            if (typeof window.gtag === 'function') {
+              window.gtag('event', 'form_submit', {
+                event_category: 'conversion',
+                form_source: 'portsmouth-ai-quick-form',
+                page_town: 'portsmouth',
+                form_type: 'quick'
+              });
+            }
+          }).catch(function () {
+            err.textContent = 'Sorry, that did not go through. Please try the full form below.';
+            err.hidden = false;
+            btn.disabled = false; btn.textContent = 'Call me back';
+          });
+        });
+      });
     })();
   </script>
 
