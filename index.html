@@ -3160,8 +3160,33 @@
       function initCal() {
         if (inited) return;
         inited = true;
-        // Reuse Cal embed loader already on page. Open inline in popup namespace.
-        if (typeof window.Cal !== 'function') return;
+        // Bootstrap Cal.com loader (the page's loader is scoped in an IIFE, can't reuse)
+        (function (C, A, L) {
+          var p = function (a, ar) { a.q.push(ar); };
+          var d = C.document;
+          C.Cal = C.Cal || function () {
+            var cal = C.Cal, ar = arguments;
+            if (!cal.loaded) {
+              cal.ns = {};
+              cal.q = cal.q || [];
+              d.head.appendChild(d.createElement('script')).src = A;
+              cal.loaded = true;
+            }
+            if (ar[0] === L) {
+              var api = function () { p(api, arguments); };
+              var namespace = ar[1];
+              api.q = api.q || [];
+              if (typeof namespace === 'string') {
+                cal.ns[namespace] = cal.ns[namespace] || api;
+                p(cal.ns[namespace], ar);
+                p(cal, ['initNamespace', namespace]);
+              } else p(cal, ar);
+              return;
+            }
+            p(cal, ar);
+          };
+        })(window, 'https://app.cal.com/embed/embed.js', 'init');
+
         try {
           window.Cal('init', 'popup-30min', { origin: 'https://app.cal.com' });
           window.Cal.ns['popup-30min']('inline', {
