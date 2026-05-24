@@ -1,0 +1,39 @@
+# Antek Automation — Portsmouth
+> AI automation for Portsmouth businesses. Voice agents, chatbots and workflow automation built by Antek Automation, a UK AI agency based in Hampshire. Portsmouth maritime, naval, defence supply chain and city-centre service businesses. Network position: spoke site.
+
+## About Antek Automation
+- Trading name: Antek Automation (sole trader)
+- Founded by: Andy Norman (30+ years in technology)
+- Headquarters: Chantry House, 38 Chantry Way, Andover, Hampshire SP10 1LZ
+- Phone: 0333 038 9960
+- Email: hello@antekautomation.com
+- ICO Registration: ZC133436
+- DUNS Number: 235593033
+- Certified Retell AI Partner, FSB Member
+- Brand hub: https://www.antekautomation.com
+- This site: https://aiservicesportsmouth.co.uk (Portsmouth micro-site in the Antek Network)
+
+## What This Site Covers
+- AI voice agents for Portsmouth businesses — 24/7 call answering, appointment booking, lead capture
+- AI chatbots for Portsmouth websites — qualify leads, book appointments, answer FAQs
+- Workflow automation for Portsmouth businesses — n8n-based integrations across 400+ tools
+- Service area: Portsmouth and surrounding Hampshire businesses
+
+## Core Services (pricing on brand hub)
+- AI Receptionist / Voice Agents: from £97/month (Starter, 120 mins) + £249 setup. Standard £198/month, Pro on request. £0.18/min overage.
+- AI Chatbots: from £57/month + £149 setup. Unlimited conversations.
+- Workflow Automation: from £250 one-off. Clients typically save 10–20 hours/week on admin.
+- GEO Audits: AI search visibility audits. Quick Check £247, Full Audit £497, Audit + Fix £997.
+
+## Key Facts
+- Setup time: voice and chat products live in 24–48 hours
+- Support: 24-hour standard response, 4-hour critical incident response
+- Data: call recordings retained 90 days, chat transcripts 12 months. UK/EU residency. GDPR compliant
+- No long-term contracts. All monthly plans roll month-to-month
+- About 80% of inbound conversations are typically handled autonomously; the rest are escalated to a human
+
+## Contact
+- This site: https://aiservicesportsmouth.co.uk
+- Phone: 0333 038 9960
+- Email: hello@antekautomation.com
+- Book a call: https://www.antekautomation.com/contact
