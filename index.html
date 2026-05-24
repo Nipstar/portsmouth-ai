@@ -1498,7 +1498,129 @@
       .stat { padding: 20px 12px; }
       .stat__label { font-size: 0.78rem; }
     }
+  
+    .footer__profiles {
+      margin-top: 14px;
+      padding-top: 14px;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      text-align: center;
+    }
+    .footer__profiles a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer__profiles a:hover { color: var(--accent-secondary); }
+    .footer__profiles-divider { margin: 0 8px; opacity: 0.3; }
+  
+    .footer__profiles {
+      margin-top: 18px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      text-align: center;
+      line-height: 2;
+    }
+    .footer__profiles-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+    .footer__profiles a {
+      display: inline-block;
+      padding: 2px 4px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer__profiles a:hover { color: var(--accent-secondary); }
+    .footer__profiles-divider { margin: 0 4px; opacity: 0.3; color: var(--text-muted); }
   </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": ["Organization", "ProfessionalService"],
+    "@id": "https://www.antekautomation.com/#organization",
+    "name": "Antek Automation",
+    "url": "https://www.antekautomation.com",
+    "logo": "https://www.antekautomation.com/logo.png",
+    "identifier": [
+      {"@type": "PropertyValue", "propertyID": "DUNS", "value": "235593033"},
+      {"@type": "PropertyValue", "propertyID": "ICO", "name": "UK Information Commissioner's Office Registration", "value": "ZC133436", "url": "https://ico.org.uk/ESDWebPages/Entry/ZC133436"}
+    ],
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Chantry House, 38 Chantry Way",
+      "addressLocality": "Andover",
+      "addressRegion": "Hampshire",
+      "postalCode": "SP10 1LZ",
+      "addressCountry": "GB"
+    },
+    "telephone": "+44-3330-389960",
+    "email": "hello@antekautomation.com",
+    "sameAs": [
+      "https://ico.org.uk/ESDWebPages/Entry/ZC133436",
+      "https://www.linkedin.com/in/andy-norman-ab78443a1",
+      "https://www.linkedin.com/company/antek-automation",
+      "https://www.youtube.com/@AntekAutomation",
+      "https://maps.app.goo.gl/XwJc5GwJvMBSJrG4A",
+      "https://www.instagram.com/antekautomation/",
+      "https://www.facebook.com/people/Antek-Automation-Intelligent-Voice-Ai-Chat-Agents/61587195202811/",
+      "https://x.com/AntekAutomation",
+      "https://www.crunchbase.com/organization/antek-automation",
+      "https://www.retellai.com/partner/antek-automation",
+      "https://about.me/andynorman",
+      "https://www.upwork.com/freelancers/antekautomation",
+      "https://clutch.co/profile/antek-automation"
+    ]
+  }
+  </script>
+  <!-- ANTEK_PHASE1_TRACKING -->
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-M4L3MHD9N5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-M4L3MHD9N5', { send_page_view: true });
+    gtag('set', { page_town: 'portsmouth', page_type: 'home' });
+  </script>
+
+  <!-- Microsoft Clarity -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "ww6ws9q0if");
+    window.clarity = window.clarity || function(){(window.clarity.q=window.clarity.q||[]).push(arguments)};
+    clarity('set', 'page_town', 'portsmouth');
+    clarity('set', 'page_type', 'home');
+    clarity('set', 'site_domain', 'aiservicesportsmouth.co.uk');
+  </script>
+
+  <!-- Retell Chat Widget -->
+  <script
+      id="retell-widget"
+      src="https://dashboard.retellai.com/retell-widget-v2.js"
+      type="module"
+      data-public-key="public_key_b96440ad931cbd5326e4d"
+      data-agent-id="agent_1c30d12544e2aedfc07ac8be1c"
+      data-title="Antek AI Assistant"
+      data-bot-name="Antek AI"
+      data-fab-text="Ask Antek AI"
+      data-color="#10b981"
+      data-popup-message="Hi! Quick question about AI for your Portsmouth business?"
+      data-show-ai-popup="true"
+      data-show-ai-popup-time="6"
+      data-auto-open="false"
+      data-dynamic='{"site": "portsmouth", "domain": "aiservicesportsmouth.co.uk"}'
+  ></script>
+
 </head>
 
 <body>
@@ -1710,7 +1832,7 @@
             <p>Ask about services, request a quote, or book an appointment — just like a real customer would on their website.</p>
             <!-- CHATBOT EMBED: Replace this comment with the chatbot widget embed script -->
             <!-- e.g. Voiceflow, Botpress, or AAVAC Bot widget code -->
-            <a href="https://boltelectrical.uk/" target="_blank" rel="noopener noreferrer" class="demo-card__cta">
+            <a href="#" onclick="event.preventDefault(); window.openAntekChat && window.openAntekChat();" class="demo-card__cta">
               Try the Chatbot
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
             </a>
@@ -1775,8 +1897,8 @@
               </li>
             </ul>
             <div class="demo-case__actions">
-              <a href="https://boltelectrical.uk/" target="_blank" rel="noopener noreferrer" class="demo-case__link">
-                Visit boltelectrical.uk
+              <a href="https://www.antekautomation.com" target="_blank" rel="noopener noreferrer" class="demo-case__link">
+                Visit antekautomation.com
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
               </a>
               <a href="#contact" class="demo-case__link">
@@ -2164,7 +2286,35 @@
           <a href="https://aiserviceswinchester.co.uk" target="_blank" rel="noopener noreferrer">Winchester</a>
           <span class="footer__satellite-divider">|</span>
           <a href="https://aiautomationfarnborough.co.uk" target="_blank" rel="noopener noreferrer">Farnborough</a>
+          <span class="footer__satellite-divider">|</span>
+          <a href="https://aiservicesberkshire.co.uk" target="_blank" rel="noopener noreferrer">Berkshire</a>
         </div>
+      </div>
+                  <div class="footer__profiles">
+        <p class="footer__profiles-label">Find Antek Automation</p>
+        <a href="https://www.linkedin.com/in/andy-norman-ab78443a1" target="_blank" rel="noopener noreferrer">LinkedIn (Andy)</a>
+        <span class="footer__profiles-divider">·</span>
+        <a href="https://www.linkedin.com/company/antek-automation" target="_blank" rel="noopener noreferrer">LinkedIn (Antek)</a>
+        <span class="footer__profiles-divider">·</span>
+        <a href="https://www.youtube.com/@AntekAutomation" target="_blank" rel="noopener noreferrer">YouTube</a>
+        <span class="footer__profiles-divider">·</span>
+        <a href="https://maps.app.goo.gl/XwJc5GwJvMBSJrG4A" target="_blank" rel="noopener noreferrer">Google Business</a>
+        <span class="footer__profiles-divider">·</span>
+        <a href="https://www.instagram.com/antekautomation/" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <span class="footer__profiles-divider">·</span>
+        <a href="https://www.facebook.com/people/Antek-Automation-Intelligent-Voice-Ai-Chat-Agents/61587195202811/" target="_blank" rel="noopener noreferrer">Facebook</a>
+        <span class="footer__profiles-divider">·</span>
+        <a href="https://x.com/AntekAutomation" target="_blank" rel="noopener noreferrer">X</a>
+        <span class="footer__profiles-divider">·</span>
+        <a href="https://www.crunchbase.com/organization/antek-automation" target="_blank" rel="noopener noreferrer">Crunchbase</a>
+        <span class="footer__profiles-divider">·</span>
+        <a href="https://www.retellai.com/partner/antek-automation" target="_blank" rel="noopener noreferrer">Retell Partner</a>
+        <span class="footer__profiles-divider">·</span>
+        <a href="https://about.me/andynorman" target="_blank" rel="noopener noreferrer">About.me</a>
+        <span class="footer__profiles-divider">·</span>
+        <a href="https://www.upwork.com/freelancers/antekautomation" target="_blank" rel="noopener noreferrer">Upwork</a>
+        <span class="footer__profiles-divider">·</span>
+        <a href="https://clutch.co/profile/antek-automation" target="_blank" rel="noopener noreferrer">Clutch</a>
       </div>
       <div class="footer__bottom">
         <p class="footer__copy">&copy; 2025 Antek Automation Ltd. Trading as AI Services Portsmouth.</p>
@@ -2200,6 +2350,58 @@
       } else {
         loadCal();
       }
+    /* ── ANTEK_PHASE1_TRACKING: page_start, click events, cal, scroll ── */
+    window._pageStart = Date.now();
+    var _navCount = parseInt(sessionStorage.getItem('antek_pages_viewed') || '0', 10);
+    sessionStorage.setItem('antek_pages_viewed', String(_navCount + 1));
+
+    document.addEventListener('click', function(e){
+      var a = e.target && e.target.closest ? e.target.closest('a') : null;
+      if (!a || !window.gtag) return;
+      var href = a.getAttribute('href') || '';
+      if (href.indexOf('tel:') === 0) {
+        gtag('event', 'phone_click', { page_town: 'portsmouth', cta_position: a.dataset.pos || 'unknown', phone_number: href.slice(4) });
+      } else if (href.indexOf('mailto:') === 0) {
+        gtag('event', 'email_click', { page_town: 'portsmouth', cta_position: a.dataset.pos || 'unknown' });
+      } else if (href.indexOf('wa.me') !== -1 || href.indexOf('whatsapp') !== -1) {
+        gtag('event', 'whatsapp_click', { page_town: 'portsmouth', cta_position: a.dataset.pos || 'unknown' });
+      }
+    }, true);
+
+    window.addEventListener('message', function(ev){
+      var d = ev && ev.data;
+      if (!d || !window.gtag) return;
+      if (d.type === 'cal:booking-successful' || (d.namespace === '30min' && d.action === 'bookingSuccessful')) {
+        gtag('event', 'cal_booking', { page_town: 'portsmouth' });
+      }
+    });
+
+    var _scrollFired = {};
+    window.addEventListener('scroll', function(){
+      var s = window.scrollY, h = document.documentElement.scrollHeight - window.innerHeight;
+      if (h <= 0) return;
+      var pct = Math.round((s / h) * 100);
+      [25,50,75,90].forEach(function(t){
+        if (pct >= t && !_scrollFired[t] && window.gtag) {
+          _scrollFired[t] = true;
+          gtag('event', 'scroll_depth', { page_town: 'portsmouth', depth_percent: t });
+        }
+      });
+    }, { passive: true });
+      /* Open Retell chat widget programmatically (used by Demo CTA) */
+      window.openAntekChat = function() {
+        if (window.gtag) gtag('event', 'chat_start', { page_town: window.__antek_town || 'unknown', cta_position: 'demo-cta' });
+        // Walk DOM looking for the Retell widget shadow host
+        var hosts = document.querySelectorAll('*');
+        for (var i = 0; i < hosts.length; i++) {
+          if (hosts[i].shadowRoot) {
+            var btn = hosts[i].shadowRoot.querySelector('button');
+            if (btn) { btn.click(); return; }
+          }
+        }
+      };
+
+
     })();
   </script>
 
@@ -2346,6 +2548,7 @@
         toast.className = 'form__toast';
         toast.style.display = 'none';
 
+        var _params = new URLSearchParams(window.location.search);
         var data = {
           name: form.querySelector('[name="name"]').value.trim(),
           email: form.querySelector('[name="email"]').value.trim(),
@@ -2353,8 +2556,23 @@
           business: form.querySelector('[name="business"]').value.trim(),
           message: form.querySelector('[name="message"]').value.trim(),
           source: form.querySelector('[name="source"]').value,
-          page_url: window.location.href
+          page_url: window.location.href,
+          page_town: 'portsmouth',
+          utm_source: _params.get('utm_source') || '',
+          utm_medium: _params.get('utm_medium') || '',
+          utm_campaign: _params.get('utm_campaign') || '',
+          utm_term: _params.get('utm_term') || '',
+          utm_content: _params.get('utm_content') || '',
+          referrer: document.referrer || 'direct',
+          session_pages: sessionStorage.getItem('antek_pages_viewed') || '1',
+          time_on_page_s: Math.round((Date.now() - (window._pageStart || Date.now())) / 1000)
         };
+        try {
+          if (window.gtag) {
+            gtag('get', 'G-M4L3MHD9N5', 'client_id', function(cid){ data.ga_client_id = cid; });
+            gtag('get', 'G-M4L3MHD9N5', 'session_id', function(sid){ data.ga_session_id = sid; });
+          }
+        } catch (e) {}
 
         // Basic validation
         if (!data.name || !data.email) {
@@ -2374,6 +2592,7 @@
           if (!res.ok) throw new Error('Network error');
           toast.textContent = 'Thanks! We\'ll be in touch shortly.';
           toast.className = 'form__toast form__toast--success';
+          if (window.gtag) gtag('event', 'form_submit', { page_town: 'portsmouth', form_source: 'contact_form' });
           form.reset();
         })
         .catch(function() {
