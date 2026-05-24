@@ -1780,6 +1780,60 @@
     }
     .ck-btn--reject:hover { background: rgba(255,255,255,0.04); }
 
+  
+    /* ═══ BOOKING POPUP ═════════════════════════════════ */
+    .bp-modal {
+      position: fixed; inset: 0; z-index: 10000;
+      display: none; align-items: center; justify-content: center;
+      padding: 16px;
+      background: rgba(10,15,28,0.78);
+      backdrop-filter: blur(6px);
+      animation: bpFade 0.2s ease-out;
+    }
+    .bp-modal.visible { display: flex; }
+    @keyframes bpFade { from { opacity: 0; } to { opacity: 1; } }
+    .bp-modal__card {
+      position: relative;
+      width: 100%; max-width: 760px; max-height: 92vh; overflow-y: auto;
+      background: var(--bg-secondary, #111827);
+      border: 2px solid var(--accent-secondary, #06b6d4);
+      border-radius: 14px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.45);
+      color: var(--text-primary, #f1f5f9);
+    }
+    .bp-modal__close {
+      position: absolute; top: 12px; right: 12px; z-index: 2;
+      width: 40px; height: 40px; border: 0; border-radius: 8px;
+      background: var(--bg-primary, #0a0f1c); color: var(--text-primary);
+      font-size: 22px; font-weight: 700; cursor: pointer;
+      transition: background-color 0.15s;
+    }
+    .bp-modal__close:hover { background: var(--accent-secondary, #06b6d4); color: #000; }
+    .bp-modal__header { padding: 28px 28px 8px; }
+    .bp-modal__label {
+      font-size: 0.72rem; text-transform: uppercase; letter-spacing: 1.5px;
+      color: var(--accent-secondary, #06b6d4); font-weight: 700; margin: 0 0 8px;
+    }
+    .bp-modal__title {
+      font-size: 1.5rem; font-weight: 700; margin: 0 0 10px;
+      color: var(--text-primary); line-height: 1.2;
+      padding-right: 48px;
+    }
+    .bp-modal__sub {
+      font-size: 0.92rem; color: var(--text-secondary); margin: 0 0 16px;
+      line-height: 1.55;
+    }
+    .bp-modal__cal {
+      margin: 0 16px 16px; min-height: 520px;
+      background: #fff; border-radius: 8px;
+      overflow: hidden;
+    }
+    @media (max-width: 768px) {
+      .bp-modal__title { font-size: 1.2rem; }
+      .bp-modal__header { padding: 22px 22px 6px; }
+      .bp-modal__cal { margin: 0 10px 10px; min-height: 480px; }
+    }
+
   </style>
   <script type="application/ld+json">
   {
@@ -3072,6 +3126,132 @@
         set('rejected');
         if (banner) banner.classList.remove('visible');
       });
+    })();
+  </script>
+
+
+  <!-- ═══ BOOKING POPUP ═══════════════════════════════ -->
+  <div class="bp-modal" id="bpModal" role="dialog" aria-modal="true" aria-label="Book a free 30-minute discovery call" aria-hidden="true">
+    <div class="bp-modal__card">
+      <button type="button" class="bp-modal__close" id="bpClose" aria-label="Close">&times;</button>
+      <div class="bp-modal__header">
+        <p class="bp-modal__label">Before you go</p>
+        <h2 class="bp-modal__title">Book a free 30-min discovery call</h2>
+        <p class="bp-modal__sub">We'll look at where AI can save you time and win you more business. No sales pitch. Replies within 1 hour Mon–Fri.</p>
+      </div>
+      <div class="bp-modal__cal" id="bp-cal-inline"></div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var KEY = 'antek_booking_popup_seen';
+      var modal = document.getElementById('bpModal');
+      var closeBtn = document.getElementById('bpClose');
+      var calMount = document.getElementById('bp-cal-inline');
+      if (!modal || !calMount) return;
+      var contact = document.getElementById('contact');
+      var inited = false;
+      var shown = false;
+
+      function sessionSeen() { try { return sessionStorage.getItem(KEY) === '1'; } catch (e) { return false; } }
+      function markSeen()    { try { sessionStorage.setItem(KEY, '1'); } catch (e) {} }
+
+      function initCal() {
+        if (inited) return;
+        inited = true;
+        // Reuse Cal embed loader already on page. Open inline in popup namespace.
+        if (typeof window.Cal !== 'function') return;
+        try {
+          window.Cal('init', 'popup-30min', { origin: 'https://app.cal.com' });
+          window.Cal.ns['popup-30min']('inline', {
+            elementOrSelector: '#bp-cal-inline',
+            config: { layout: 'month_view', useSlotsViewOnSmallScreen: 'true', theme: 'light' },
+            calLink: 'antek-automation/30min'
+          });
+          window.Cal.ns['popup-30min']('ui', { theme: 'light', hideEventTypeDetails: false, layout: 'month_view' });
+        } catch (e) { /* swallow */ }
+      }
+
+      function show(trigger) {
+        if (shown || sessionSeen()) return;
+        // Suppress if contact section is in viewport (user already converting)
+        if (contact) {
+          var r = contact.getBoundingClientRect();
+          var inView = r.top < window.innerHeight && r.bottom > 0;
+          if (inView) return;
+        }
+        shown = true;
+        markSeen();
+        initCal();
+        modal.classList.add('visible');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        if (typeof window.gtag === 'function') {
+          window.gtag('event', 'booking_popup_shown', {
+            event_category: 'conversion',
+            trigger: trigger,
+            page_path: window.location.pathname
+          });
+        }
+        cleanupTriggers();
+      }
+
+      function dismiss(method) {
+        modal.classList.remove('visible');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        if (typeof window.gtag === 'function') {
+          window.gtag('event', 'booking_popup_dismissed', {
+            event_category: 'conversion',
+            method: method
+          });
+        }
+      }
+
+      // Close handlers
+      closeBtn.addEventListener('click', function () { dismiss('close'); });
+      modal.addEventListener('click', function (e) {
+        if (e.target === modal) dismiss('backdrop');
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && modal.classList.contains('visible')) dismiss('esc');
+      });
+
+      // Triggers
+      var isDesktop = window.matchMedia('(min-width: 768px)').matches;
+      var scrolled = false;
+      var engagedTimer = null;
+      var safetyTimer = null;
+      var exitHandler = null;
+
+      function onScroll() {
+        var pct = (window.scrollY + window.innerHeight) / document.documentElement.scrollHeight;
+        if (pct > 0.5 && !scrolled) {
+          scrolled = true;
+          engagedTimer = window.setTimeout(function () { show('engaged'); }, 30000);
+        }
+      }
+
+      function onExit(e) {
+        if (e.clientY <= 0) show('exit-intent');
+      }
+
+      function cleanupTriggers() {
+        window.removeEventListener('scroll', onScroll);
+        if (exitHandler) document.removeEventListener('mouseout', exitHandler);
+        if (engagedTimer) window.clearTimeout(engagedTimer);
+        if (safetyTimer) window.clearTimeout(safetyTimer);
+      }
+
+      if (sessionSeen()) return;
+      window.addEventListener('scroll', onScroll, { passive: true });
+      if (isDesktop) {
+        exitHandler = onExit;
+        document.addEventListener('mouseout', exitHandler);
+      }
+      // Safety net: 60s with no scroll → still show
+      safetyTimer = window.setTimeout(function () { if (!scrolled) show('engaged'); }, 60000);
     })();
   </script>
 
