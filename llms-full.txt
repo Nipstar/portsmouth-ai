@@ -1,0 +1,96 @@
+# Antek Automation — Portsmouth
+> AI automation for Portsmouth businesses. Voice agents, chatbots and workflow automation built by Antek Automation, a UK AI agency based in Hampshire. Portsmouth maritime, naval, defence supply chain and city-centre service businesses. Network position: spoke site.
+
+## About Antek Automation
+- Trading name: Antek Automation (sole trader)
+- Founded by: Andy Norman (30+ years in technology)
+- Headquarters: Chantry House, 38 Chantry Way, Andover, Hampshire SP10 1LZ
+- Phone: 0333 038 9960
+- Email: hello@antekautomation.com
+- ICO Registration: ZC133436
+- DUNS Number: 235593033
+- Certified Retell AI Partner, FSB Member
+- Brand hub: https://www.antekautomation.com
+- This site: https://aiservicesportsmouth.co.uk (Portsmouth micro-site in the Antek Network)
+
+## What This Site Covers
+- AI voice agents for Portsmouth businesses — 24/7 call answering, appointment booking, lead capture
+- AI chatbots for Portsmouth websites — qualify leads, book appointments, answer FAQs
+- Workflow automation for Portsmouth businesses — n8n-based integrations across 400+ tools
+- Service area: Portsmouth and surrounding Hampshire businesses
+
+## Core Services (pricing on brand hub)
+- AI Receptionist / Voice Agents: from £97/month (Starter, 120 mins) + £249 setup. Standard £198/month, Pro on request. £0.18/min overage.
+- AI Chatbots: from £57/month + £149 setup. Unlimited conversations.
+- Workflow Automation: from £250 one-off. Clients typically save 10–20 hours/week on admin.
+- GEO Audits: AI search visibility audits. Quick Check £247, Full Audit £497, Audit + Fix £997.
+
+## Key Facts
+- Setup time: voice and chat products live in 24–48 hours
+- Support: 24-hour standard response, 4-hour critical incident response
+- Data: call recordings retained 90 days, chat transcripts 12 months. UK/EU residency. GDPR compliant
+- No long-term contracts. All monthly plans roll month-to-month
+- About 80% of inbound conversations are typically handled autonomously; the rest are escalated to a human
+
+## Contact
+- This site: https://aiservicesportsmouth.co.uk
+- Phone: 0333 038 9960
+- Email: hello@antekautomation.com
+- Book a call: https://www.antekautomation.com/contact
+
+## Full Context (extended)
+
+### Parent Organization
+Portsmouth AI is part of the **Antek Automation** network — a UK AI automation agency.
+
+- Brand hub: https://www.antekautomation.com
+- Founder: Andy Norman (30+ years technology background)
+- HQ: Chantry House, 38 Chantry Way, Andover, Hampshire SP10 1LZ
+- ICO Registration: ZC133436
+- DUNS Number: 235593033
+- Certified Retell AI Partner, FSB Member
+- Telephone: 0333 038 9960
+- Email: hello@antekautomation.com
+
+### Service Coverage — Portsmouth and Hampshire
+We deliver AI voice agents, AI chatbots, and workflow automation to businesses across Portsmouth, Hampshire, and the surrounding area. Discovery calls are free and run for 30 minutes. Most voice agents and chatbots go live within 24-48 hours.
+
+### Pricing (UK GBP)
+- **AI Receptionist / Voice Agent:** Starter £97/month (120 included call minutes) + £249 setup. Standard £198/month (240 minutes) + £249 setup. Pro: contact sales. Overage £0.18/min.
+- **AI Chatbot:** £57/month + £149 setup. Unlimited conversations.
+- **Workflow Automation:** From £250 one-off. Built on n8n (open-source, self-hosted).
+- **GEO Audits:** Quick Check £247, Full Audit £497, Audit + Fix £997, Monthly Retainer £497/month (min 3 months).
+
+No long-term contracts — all monthly plans roll month-to-month.
+
+### Support and Compliance
+- Standard support response: within 24 hours
+- Critical incident response: within 4 hours
+- Call recording retention: 90 days
+- Chat transcript retention: 12 months
+- Data residency: UK / EU
+- GDPR compliant. DPA available on request.
+
+### Industries served (selected)
+Hospitality, dental practices, legal firms, accounting practices, trades (plumbers, electricians, HVAC, builders, roofers), cleaning companies, estate agents, salons, fitness and wellness, property management, veterinary practices, professional services, IT and MSPs.
+
+### Network sister sites
+- Hampshire hub: https://aiserviceshampshire.co.uk
+- Berkshire hub: https://aiservicesberkshire.co.uk
+- Andover: https://aiautomationandover.co.uk
+- Basingstoke: https://aiautomationbasingstoke.co.uk
+- Farnborough: https://aiautomationfarnborough.co.uk
+- Portsmouth: https://aiservicesportsmouth.co.uk
+- Southampton: https://aiautomationsouthampton.co.uk
+- Winchester: https://aiserviceswinchester.co.uk
+
+### Key Differentiators
+- Certified Retell AI Partner (voice AI)
+- Hampshire-based, London-quality delivery at non-London prices
+- 30+ years in service business technology
+- Builds AI systems daily using the same technology stack as GEO auditing
+- FSB Member
+- Face-to-face meetings available for Hampshire-based clients
+
+### Canonical URL
+This site: https://aiservicesportsmouth.co.uk
