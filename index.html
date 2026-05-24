@@ -1708,6 +1708,78 @@
       footer { padding-bottom: 72px !important; }
     }
 
+  
+    /* ═══ COOKIE CONSENT BANNER ═════════════════════════ */
+    .ck-banner {
+      position: fixed;
+      bottom: 16px;
+      left: 16px;
+      right: 16px;
+      max-width: 440px;
+      z-index: 9999;
+      background: var(--bg-secondary, #111827);
+      border: 2px solid var(--accent-secondary, #06b6d4);
+      border-radius: 12px;
+      padding: 18px 20px;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.4);
+      color: var(--text-primary, #f1f5f9);
+      font-family: var(--font-body, 'DM Sans', sans-serif);
+      display: none;
+      animation: ckSlideIn 0.3s ease-out;
+    }
+    .ck-banner.visible { display: block; }
+    @media (min-width: 640px) {
+      .ck-banner { left: auto; right: 24px; bottom: 24px; }
+    }
+    @media (max-width: 768px) {
+      /* Lift above sticky CTA bar */
+      .ck-banner { bottom: 80px; }
+    }
+    @keyframes ckSlideIn {
+      from { transform: translateY(20px); opacity: 0; }
+      to   { transform: translateY(0);    opacity: 1; }
+    }
+    .ck-banner h2 {
+      font-size: 1rem;
+      margin: 0 0 8px;
+      color: var(--text-primary);
+      font-weight: 700;
+    }
+    .ck-banner p {
+      font-size: 0.83rem;
+      line-height: 1.5;
+      margin: 0 0 14px;
+      color: var(--text-secondary);
+    }
+    .ck-banner a {
+      color: var(--accent-secondary, #06b6d4);
+      text-decoration: underline;
+    }
+    .ck-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+    .ck-btn {
+      flex: 1;
+      min-width: 100px;
+      padding: 10px 14px;
+      border: 0;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: filter 0.15s, transform 0.1s;
+    }
+    .ck-btn:active { transform: translateY(1px); }
+    .ck-btn--accept {
+      background: var(--accent-tertiary, #10b981);
+      color: #fff;
+    }
+    .ck-btn--accept:hover { filter: brightness(1.1); }
+    .ck-btn--reject {
+      background: transparent;
+      color: var(--text-secondary);
+      border: 1px solid var(--border);
+    }
+    .ck-btn--reject:hover { background: rgba(255,255,255,0.04); }
+
   </style>
   <script type="application/ld+json">
   {
@@ -1755,6 +1827,13 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      wait_for_update: 500
+    });
     gtag('config', 'G-M4L3MHD9N5', { send_page_view: true });
     gtag('set', { page_town: 'portsmouth', page_type: 'home' });
   </script>
@@ -2926,6 +3005,65 @@
             cta_type: action
           });
         }
+      });
+    })();
+  </script>
+
+
+  <!-- ═══ COOKIE CONSENT BANNER ═══════════════════════ -->
+  <div class="ck-banner" id="ckBanner" role="dialog" aria-live="polite" aria-label="Cookie consent">
+    <h2>Cookies</h2>
+    <p>We use Google Analytics and Microsoft Clarity to understand how visitors use this site. Nothing is shared for third-party advertising. See our <a href="https://www.antekautomation.com/privacy-policy" target="_blank" rel="noopener">privacy policy</a>.</p>
+    <div class="ck-actions">
+      <button type="button" class="ck-btn ck-btn--accept" id="ckAccept">Accept</button>
+      <button type="button" class="ck-btn ck-btn--reject" id="ckReject">Reject</button>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var KEY = 'antek_cookie_consent';
+      var banner = document.getElementById('ckBanner');
+      var accept = document.getElementById('ckAccept');
+      var reject = document.getElementById('ckReject');
+
+      function get() {
+        try { var v = localStorage.getItem(KEY); return v === 'accepted' || v === 'rejected' ? v : null; }
+        catch (e) { return null; }
+      }
+      function set(v) {
+        try { localStorage.setItem(KEY, v); } catch (e) {}
+      }
+      function grant() {
+        if (typeof window.gtag === 'function') {
+          window.gtag('consent', 'update', {
+            analytics_storage: 'granted',
+            ad_storage: 'denied',
+            ad_user_data: 'denied',
+            ad_personalization: 'denied'
+          });
+        }
+        if (typeof window.__loadClarity === 'function') window.__loadClarity();
+      }
+
+      var stored = get();
+      if (stored === 'accepted') {
+        grant();
+      } else if (stored === 'rejected') {
+        // remain default-denied — do nothing
+      } else if (banner) {
+        // Defer banner display ~800ms so it doesn't fight LCP
+        window.setTimeout(function () { banner.classList.add('visible'); }, 800);
+      }
+
+      if (accept) accept.addEventListener('click', function () {
+        set('accepted');
+        if (banner) banner.classList.remove('visible');
+        grant();
+      });
+      if (reject) reject.addEventListener('click', function () {
+        set('rejected');
+        if (banner) banner.classList.remove('visible');
       });
     })();
   </script>
