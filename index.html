@@ -1499,6 +1499,45 @@
       .stat__label { font-size: 0.78rem; }
     }
   </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": ["Organization", "ProfessionalService"],
+    "@id": "https://www.antekautomation.com/#organization",
+    "name": "Antek Automation",
+    "url": "https://www.antekautomation.com",
+    "logo": "https://www.antekautomation.com/logo.png",
+    "identifier": [
+      {"@type": "PropertyValue", "propertyID": "DUNS", "value": "235593033"},
+      {"@type": "PropertyValue", "propertyID": "ICO", "name": "UK Information Commissioner's Office Registration", "value": "ZC133436", "url": "https://ico.org.uk/ESDWebPages/Entry/ZC133436"}
+    ],
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Chantry House, 38 Chantry Way",
+      "addressLocality": "Andover",
+      "addressRegion": "Hampshire",
+      "postalCode": "SP10 1LZ",
+      "addressCountry": "GB"
+    },
+    "telephone": "+44-3330-389960",
+    "email": "hello@antekautomation.com",
+    "sameAs": [
+      "https://ico.org.uk/ESDWebPages/Entry/ZC133436",
+      "https://retellai.com/partner/antek-automation"
+    ]
+  }
+  </script>
+  <!-- ANTEK_PHASE1_TRACKING -->
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-M4L3MHD9N5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-M4L3MHD9N5', { send_page_view: true });
+    gtag('set', { page_town: 'portsmouth', page_type: 'home' });
+  </script>
+
 </head>
 
 <body>
@@ -2200,6 +2239,45 @@
       } else {
         loadCal();
       }
+    /* ── ANTEK_PHASE1_TRACKING: page_start, click events, cal, scroll ── */
+    window._pageStart = Date.now();
+    var _navCount = parseInt(sessionStorage.getItem('antek_pages_viewed') || '0', 10);
+    sessionStorage.setItem('antek_pages_viewed', String(_navCount + 1));
+
+    document.addEventListener('click', function(e){
+      var a = e.target && e.target.closest ? e.target.closest('a') : null;
+      if (!a || !window.gtag) return;
+      var href = a.getAttribute('href') || '';
+      if (href.indexOf('tel:') === 0) {
+        gtag('event', 'phone_click', { page_town: 'portsmouth', cta_position: a.dataset.pos || 'unknown', phone_number: href.slice(4) });
+      } else if (href.indexOf('mailto:') === 0) {
+        gtag('event', 'email_click', { page_town: 'portsmouth', cta_position: a.dataset.pos || 'unknown' });
+      } else if (href.indexOf('wa.me') !== -1 || href.indexOf('whatsapp') !== -1) {
+        gtag('event', 'whatsapp_click', { page_town: 'portsmouth', cta_position: a.dataset.pos || 'unknown' });
+      }
+    }, true);
+
+    window.addEventListener('message', function(ev){
+      var d = ev && ev.data;
+      if (!d || !window.gtag) return;
+      if (d.type === 'cal:booking-successful' || (d.namespace === '30min' && d.action === 'bookingSuccessful')) {
+        gtag('event', 'cal_booking', { page_town: 'portsmouth' });
+      }
+    });
+
+    var _scrollFired = {};
+    window.addEventListener('scroll', function(){
+      var s = window.scrollY, h = document.documentElement.scrollHeight - window.innerHeight;
+      if (h <= 0) return;
+      var pct = Math.round((s / h) * 100);
+      [25,50,75,90].forEach(function(t){
+        if (pct >= t && !_scrollFired[t] && window.gtag) {
+          _scrollFired[t] = true;
+          gtag('event', 'scroll_depth', { page_town: 'portsmouth', depth_percent: t });
+        }
+      });
+    }, { passive: true });
+
     })();
   </script>
 
@@ -2346,6 +2424,7 @@
         toast.className = 'form__toast';
         toast.style.display = 'none';
 
+        var _params = new URLSearchParams(window.location.search);
         var data = {
           name: form.querySelector('[name="name"]').value.trim(),
           email: form.querySelector('[name="email"]').value.trim(),
@@ -2353,8 +2432,23 @@
           business: form.querySelector('[name="business"]').value.trim(),
           message: form.querySelector('[name="message"]').value.trim(),
           source: form.querySelector('[name="source"]').value,
-          page_url: window.location.href
+          page_url: window.location.href,
+          page_town: 'portsmouth',
+          utm_source: _params.get('utm_source') || '',
+          utm_medium: _params.get('utm_medium') || '',
+          utm_campaign: _params.get('utm_campaign') || '',
+          utm_term: _params.get('utm_term') || '',
+          utm_content: _params.get('utm_content') || '',
+          referrer: document.referrer || 'direct',
+          session_pages: sessionStorage.getItem('antek_pages_viewed') || '1',
+          time_on_page_s: Math.round((Date.now() - (window._pageStart || Date.now())) / 1000)
         };
+        try {
+          if (window.gtag) {
+            gtag('get', 'G-M4L3MHD9N5', 'client_id', function(cid){ data.ga_client_id = cid; });
+            gtag('get', 'G-M4L3MHD9N5', 'session_id', function(sid){ data.ga_session_id = sid; });
+          }
+        } catch (e) {}
 
         // Basic validation
         if (!data.name || !data.email) {
@@ -2374,6 +2468,7 @@
           if (!res.ok) throw new Error('Network error');
           toast.textContent = 'Thanks! We\'ll be in touch shortly.';
           toast.className = 'form__toast form__toast--success';
+          if (window.gtag) gtag('event', 'form_submit', { page_town: 'portsmouth', form_source: 'contact_form' });
           form.reset();
         })
         .catch(function() {
