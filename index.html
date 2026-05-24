@@ -1612,6 +1612,7 @@
       data-agent-id="agent_1c30d12544e2aedfc07ac8be1c"
       data-title="Antek AI Assistant"
       data-bot-name="Antek AI"
+      data-fab-text="Ask Antek AI"
       data-color="#10b981"
       data-popup-message="Hi! Quick question about AI for your Portsmouth business?"
       data-show-ai-popup="true"
@@ -1831,7 +1832,7 @@
             <p>Ask about services, request a quote, or book an appointment — just like a real customer would on their website.</p>
             <!-- CHATBOT EMBED: Replace this comment with the chatbot widget embed script -->
             <!-- e.g. Voiceflow, Botpress, or AAVAC Bot widget code -->
-            <a href="https://boltelectrical.uk/" target="_blank" rel="noopener noreferrer" class="demo-card__cta">
+            <a href="#" onclick="event.preventDefault(); window.openAntekChat && window.openAntekChat();" class="demo-card__cta">
               Try the Chatbot
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
             </a>
@@ -1896,8 +1897,8 @@
               </li>
             </ul>
             <div class="demo-case__actions">
-              <a href="https://boltelectrical.uk/" target="_blank" rel="noopener noreferrer" class="demo-case__link">
-                Visit boltelectrical.uk
+              <a href="https://www.antekautomation.com" target="_blank" rel="noopener noreferrer" class="demo-case__link">
+                Visit antekautomation.com
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
               </a>
               <a href="#contact" class="demo-case__link">
@@ -2387,6 +2388,19 @@
         }
       });
     }, { passive: true });
+      /* Open Retell chat widget programmatically (used by Demo CTA) */
+      window.openAntekChat = function() {
+        if (window.gtag) gtag('event', 'chat_start', { page_town: window.__antek_town || 'unknown', cta_position: 'demo-cta' });
+        // Walk DOM looking for the Retell widget shadow host
+        var hosts = document.querySelectorAll('*');
+        for (var i = 0; i < hosts.length; i++) {
+          if (hosts[i].shadowRoot) {
+            var btn = hosts[i].shadowRoot.querySelector('button');
+            if (btn) { btn.click(); return; }
+          }
+        }
+      };
+
 
     })();
   </script>
