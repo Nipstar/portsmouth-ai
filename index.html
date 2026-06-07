@@ -21,11 +21,19 @@
   <meta property="og:url" content="https://aiservicesportsmouth.co.uk/">
   <meta property="og:locale" content="en_GB">
   <meta property="og:site_name" content="AI Services Portsmouth">
+  <meta property="og:image" content="https://www.antekautomation.com/og-image.png">
+  <meta property="og:image:secure_url" content="https://www.antekautomation.com/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Antek Automation — AI automation agency for UK businesses">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="AI Services Portsmouth | Voice Agents & Automation">
   <meta name="twitter:description" content="Portsmouth AI agency. Voice agents, chatbots & automation for local businesses. 24/7 call handling.">
+  <meta name="twitter:image" content="https://www.antekautomation.com/og-image.png">
+  <meta name="twitter:image:alt" content="Antek Automation — AI automation agency for UK businesses">
 
   <!-- Favicon -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230a0f1c'/><path d='M8 22l8-14 8 14' stroke='%233b82f6' stroke-width='2.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/><circle cx='16' cy='14' r='2' fill='%2306b6d4'/></svg>">
@@ -50,9 +58,11 @@
   {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
+    "@id": "https://aiservicesportsmouth.co.uk/#organization",
     "name": "AI Services Portsmouth",
     "description": "AI automation agency specialising in AI voice agents, chatbots, and workflow automation for small businesses in Portsmouth, Hampshire, and the South of England.",
-    "url": "https://aiservicesportsmouth.co.uk",
+    "url": "https://aiservicesportsmouth.co.uk/",
+    "founder": { "@id": "https://www.antekautomation.com/#andynorman" },
     "telephone": "0333 038 9960",
     "email": "hello@antekautomation.com",
     "address": {
@@ -87,7 +97,31 @@
     "logo": "https://aiservicesportsmouth.co.uk/logo.svg",
     "sameAs": [
       "https://www.antekautomation.com",
-      "https://retellai.com/partner/antek-automation"
+      "https://www.retellai.com/partner/antek-automation"
+    ]
+  }
+  </script>
+
+  <!-- JSON-LD: Founder (SHARED Person @id across all Antek sites — do not localise) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": "https://www.antekautomation.com/#andynorman",
+    "name": "Andy Norman",
+    "jobTitle": "Founder",
+    "image": "https://www.antekautomation.com/andy-norman.webp",
+    "worksFor": {"@id": "https://aiservicesportsmouth.co.uk/#organization"},
+    "knowsAbout": [
+      "AI voice agents",
+      "Conversational AI",
+      "Workflow automation",
+      "Field service management",
+      "Managed print services"
+    ],
+    "sameAs": [
+      "https://www.linkedin.com/in/andy-norman-ab78443a1",
+      "https://about.me/andynorman"
     ]
   }
   </script>
@@ -207,7 +241,7 @@
         "name": "What is AIaaS (AI-as-a-Service) and is it available in Portsmouth?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "AIaaS bundles the AI capability, the build, the hosting, the monitoring, and the ongoing tweaks into a single monthly service. We are a Portsmouth AIaaS provider — voice agent from £97/month, chatbot from £57/month, workflow automation project-priced. You get a working AI without hiring engineers, MLOps, or vendor managers."
+          "text": "AIaaS the way the Portsmouth dockyard buys infrastructure — a single per-month invoice that covers the build, the run, and the upkeep. As a Portsmouth AIaaS provider we deliver voice agent from £497 setup + £97/month, chatbot from £297 setup + £57/month, and project-priced workflow automation. UK hosting, prompt and tool tweaks included, no in-house ML team required."
         }
       },
       {
@@ -215,7 +249,7 @@
         "name": "Best AIaaS companies for Portsmouth SMEs — what should we look for?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Look for AIaaS providers who: (1) integrate with your real systems, not just chat embeds, (2) charge per result/seat, not per token, (3) handle the ongoing prompt and tool tweaks themselves, (4) provide warm human handoff when the AI hits an edge case, and (5) understand Portsmouth's mix of naval supply chain, NHS-adjacent businesses, university spinouts, and Portsea Island trades. We tick all five."
+          "text": "Five things matter when you pick a Portsmouth AIaaS partner: (1) the agent must integrate with your real systems (Gunwharf retail tills, dockyard supplier portals, NHS-adjacent EMRs) not just embed a chat box; (2) you should be charged per result or per seat, never per token; (3) the provider — not you — owns the ongoing prompt and tool tuning; (4) every edge case must hand off warm to a human in your team; (5) the provider should already understand Portsmouth's mix of naval supply chain, NHS-adjacent care, university spin-outs and Portsea Island trades. We tick all five."
         }
       }
     ]
@@ -1663,22 +1697,15 @@
     .conv-form-trust strong { color: var(--text-primary); }
 
     .conv-sticky-cta {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      display: none;
-      grid-template-columns: 1fr 1fr;
-      gap: 0;
-      z-index: 9998;
-      background: rgba(10, 15, 28, 0.96);
-      backdrop-filter: blur(10px);
-      border-top: 1px solid var(--border);
-      box-shadow: 0 -4px 16px rgba(0,0,0,0.25);
-      transform: translateY(100%);
-      transition: transform 0.25s ease;
+      display: none !important;
     }
-    .conv-sticky-cta.visible { transform: translateY(0); }
+
+    /* Retell widget — pinned bottom-right opposite cookie banner */
+    #retell-widget-root {
+      right: 24px !important;
+      left: auto !important;
+      bottom: 24px !important;
+    }
     .conv-sticky-cta a {
       display: flex;
       align-items: center;
@@ -1703,12 +1730,8 @@
     }
     .conv-sticky-cta a:last-child:hover { filter: brightness(1.1); }
     .conv-sticky-cta svg { flex-shrink: 0; }
-    @media (max-width: 768px) {
-      .conv-sticky-cta { display: grid; }
-      footer { padding-bottom: 72px !important; }
-    }
+    /* sticky CTA disabled — covered by nav + hero + footer CTAs */
 
-  
     /* ═══ COOKIE CONSENT BANNER ═════════════════════════ */
     .ck-banner {
       position: fixed;
@@ -1729,12 +1752,9 @@
     }
     .ck-banner.visible { display: block; }
     @media (min-width: 640px) {
-      .ck-banner { left: auto; right: 24px; bottom: 24px; }
+      .ck-banner { left: 24px; right: auto; bottom: 24px; }
     }
-    @media (max-width: 768px) {
-      /* Lift above sticky CTA bar */
-      .ck-banner { bottom: 80px; }
-    }
+    /* sticky CTA removed — cookie banner no longer needs lift */
     @keyframes ckSlideIn {
       from { transform: translateY(20px); opacity: 0; }
       to   { transform: translateY(0);    opacity: 1; }
@@ -2036,7 +2056,7 @@
         <div class="hero__content">
           <div class="hero__label">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-            AI Services Portsmouth — Portsmouth &amp; Hampshire
+            AI Services Portsmouth — Naval Quarter & Dockyard SMEs
           </div>
           <h1>AI Voice Agents, Chatbots &amp; Automation for <span class="gradient-text">Portsmouth Businesses</span></h1>
           <p class="hero__sub">Serving Portsmouth's vibrant business community from Gunwharf to Southsea. AI-powered phone systems that never miss a customer, intelligent chatbots that work while you sleep, and smart automation that frees your team to focus on what matters most.</p>
@@ -2055,7 +2075,7 @@
             Powered by Antek Automation — Certified Retell AI Partner — Serving Portsmouth, Southsea, Cosham, Havant, Waterlooville, Fareham &amp; Gosport
           </div>
           <div class="hero__partner">
-            Powered by <a href="https://www.antekautomation.com" target="_blank" rel="noopener noreferrer">Antek Automation</a> <span class="hero__partner-divider">|</span> <a href="https://retellai.com/partner/antek-automation" target="_blank" rel="noopener noreferrer">Certified Retell AI Partner</a>
+            Powered by <a href="https://www.antekautomation.com" target="_blank" rel="noopener noreferrer">Antek Automation</a> <span class="hero__partner-divider">|</span> <a href="https://www.retellai.com/partner/antek-automation" target="_blank" rel="noopener noreferrer">Certified Retell AI Partner</a>
           </div>
           <div class="conv-trust-strip" aria-label="Why work with us">
             <span>Replies within 1 hour Mon–Fri</span>
@@ -2318,7 +2338,7 @@
       <div class="container">
         <div class="section-header reveal">
           <p class="section-label">Who We Help</p>
-          <h2 class="section-title">Industries We Serve Across Portsmouth &amp; Hampshire</h2>
+          <h2 class="section-title">Industries We Serve Across Portsmouth &amp; the Solent</h2>
           <p class="section-subtitle">From naval city trades to Southsea hospitality and professional services across Portsea Island — we help Portsmouth businesses in every sector capture more leads and work smarter.</p>
         </div>
         <div class="industries__grid">
@@ -2401,9 +2421,9 @@
           <article class="why__card reveal">
             <h3>
               <svg class="why__card-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-              2+ Years in AI Automation
+              30+ Years in Tech, 3+ Years in AI Automation
             </h3>
-            <p>Dedicated to helping local businesses harness the power of AI. Hands-on experience building solutions that actually work.</p>
+            <p>30+ years in business technology, 3+ years building production AI for local SMEs. Hands-on experience with solutions that actually work.</p>
           </article>
           <article class="why__card reveal">
             <h3>
@@ -2434,12 +2454,65 @@
             <div class="stat__label">Response Time</div>
           </div>
           <div class="stat reveal">
-            <div class="stat__number" data-target="2" data-suffix="+">0</div>
-            <div class="stat__label">Years Experience</div>
+            <div class="stat__number" data-target="3" data-suffix="+">0</div>
+            <div class="stat__label">Years in AI Automation</div>
           </div>
         </div>
       </div>
     </section>
+
+    <!-- ═══ MEET THE FOUNDER ═══ -->
+    <section class="why" id="founder" aria-labelledby="founder-heading">
+      <div class="container">
+        <div class="section-header reveal">
+          <p class="section-label">Meet the Founder</p>
+          <h2 class="section-title" id="founder-heading">Built by Andy Norman, hands-on with every build</h2>
+        </div>
+        <div class="founder__row reveal">
+          <img src="https://www.antekautomation.com/andy-norman.webp"
+               alt="Andy Norman, founder of Antek Automation"
+               class="founder__photo"
+               loading="lazy"
+               width="240" height="240">
+          <div class="founder__body">
+            <p>Antek Automation was founded by Andy Norman — 30+ years in field service and managed print, now a
+              Certified Retell AI Partner building AI voice agents and automation for local businesses.
+              Based in Andover, Hampshire.</p>
+            <p class="founder__links">
+              <a href="https://www.linkedin.com/in/andy-norman-ab78443a1" target="_blank" rel="author noopener noreferrer">Andy Norman on LinkedIn</a>
+              &nbsp;·&nbsp;
+              <a href="https://about.me/andynorman" target="_blank" rel="author noopener noreferrer">About.me</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <style>
+      .founder__row {
+        display: grid;
+        grid-template-columns: 240px 1fr;
+        gap: 32px;
+        align-items: center;
+        max-width: 900px;
+        margin: 32px auto 0;
+      }
+      .founder__photo {
+        width: 240px;
+        height: 240px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid #1e293b;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+      }
+      .founder__body p { color: var(--text-secondary, #94a3b8); line-height: 1.6; margin: 0 0 14px; }
+      .founder__body p:last-child { margin-bottom: 0; }
+      .founder__links a { color: var(--accent-secondary, #06b6d4); text-decoration: none; }
+      .founder__links a:hover { text-decoration: underline; }
+      @media (max-width: 768px) {
+        .founder__row { grid-template-columns: 1fr; text-align: center; gap: 20px; }
+        .founder__photo { width: 180px; height: 180px; margin: 0 auto; }
+      }
+    </style>
 
     <!-- ═══ AGENTIC AI (Portsmouth) ═══ -->
     <section class="agentic-ai" id="agentic-ai">
@@ -2476,24 +2549,24 @@
         <div class="section__head reveal">
           <span class="section__label">AIaaS Portsmouth</span>
           <h2>AI-as-a-Service for Portsmouth businesses</h2>
-          <p class="section-subtitle">We are a Portsmouth AIaaS provider — AI capability delivered as a monthly service, not a one-off project. Voice agent, chatbot, workflow automation, integrations, monitoring, and tweaks all included. No in-house ML team needed.</p>
+          <p class="section-subtitle">Portsmouth AIaaS the way the dockyard buys infrastructure — a single per-month invoice that covers the build, the run, and the upkeep. One accountable supplier. No in-house ML hires. Same support model whether you sit in Gunwharf, Southsea, Old Portsmouth or the trading estates north of the M27.</p>
         </div>
         <div class="aiaas__grid">
           <article class="aiaas__card reveal">
-            <h3>What does AIaaS include?</h3>
-            <p>Build, hosting, monitoring, prompt updates, integration changes, voice-quality tuning, and monthly reporting. You get a working AI capability without hiring engineers, MLOps, or vendor managers. Best AIaaS companies in Portsmouth charge for outcomes — we charge for the AI itself.</p>
+            <h3>What you actually buy</h3>
+            <p>Provisioning, hosting on UK infrastructure, weekly health checks, prompt + tool tweaks, voice quality tuning, integration patches when your CRM or calendar API moves, and a monthly written report. Charged per agent, not per token — so your finance team gets a predictable line item, not a usage gamble.</p>
           </article>
           <article class="aiaas__card reveal">
-            <h3>AIaaS consultants in Portsmouth</h3>
-            <p>We scope what you need, deploy it, and run it. Most Portsmouth SMEs pick the £97/month voice-agent or £57/month chatbot tier and have a working AI within 7–10 working days. Larger projects (multi-agent, multi-channel, integrated with naval supply-chain compliance, NHS-adjacent workflows, university partnerships) get bespoke pricing.</p>
+            <h3>Portsmouth AIaaS engagement model</h3>
+            <p>Half-day scoping session at your office or over Teams. Voice-agent or chatbot pilot live within 7–10 working days on the £497 setup + £97/month tier. Bespoke scope for naval-supply-chain compliance, NHS-adjacent care providers, University of Portsmouth spin-outs, or multi-site Portsea Island trades — same monthly billing, larger numbers.</p>
           </article>
           <article class="aiaas__card reveal">
-            <h3>AIaaS vs in-house AI</h3>
-            <p>In-house: £60–90k engineer salary, 3–6 month ramp, recurring infra cost, ongoing vendor management. AIaaS: £97–£500/month, live in days, zero recruitment, single point of accountability. For Portsmouth SMEs the maths is obvious.</p>
+            <h3>Why AIaaS beats hiring an in-house AI engineer in Portsmouth</h3>
+            <p>An in-house AI lead in Portsmouth costs a £65–90k base, 9–14 weeks notice, dedicated AWS/Azure bill, plus you carry the recruitment risk. AIaaS lands you a working agent inside a fortnight at £497 setup + £97/month, hands you one supplier to call when something needs tuning, and lets you scale up or down each quarter without an HR conversation. Same maths the dockyard SME base already applies to managed IT — applied to AI.</p>
           </article>
           <article class="aiaas__card reveal">
-            <h3>AIaaS for Portsmouth data consultants</h3>
-            <p>If you advise Portsmouth businesses on data and analytics, we white-label the AI layer underneath your engagements. Your brand, our agents. Voice receptionist that books your discovery calls. Chatbot that handles tier-1 client queries. Workflow automation that syncs your client data into your reporting stack. Common pattern for Portsmouth data consultants who need AI capability without becoming an AI vendor themselves.</p>
+            <h3>Best AIaaS providers for Portsmouth SMEs — what to look for</h3>
+            <p>Five things matter when you pick a Portsmouth AIaaS partner: (1) the agent must integrate with your real systems (Gunwharf retail tills, dockyard supplier portals, NHS-adjacent EMRs) not just embed a chat box; (2) you should be charged per result or per seat, never per token; (3) the provider — not you — owns the ongoing prompt and tool tuning; (4) every edge case must hand off warm to a human in your team; (5) the provider should already understand Portsmouth's mix of naval supply chain, NHS-adjacent care, university spin-outs and Portsea Island trades. We tick all five.</p>
           </article>
         </div>
       </div>
@@ -2641,14 +2714,14 @@
               What is AIaaS (AI-as-a-Service) and is it available in Portsmouth?
               <svg class="faq__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
             </button>
-            <div class="faq__answer"><div class="faq__answer-inner">AIaaS bundles the AI capability, the build, the hosting, the monitoring, and the ongoing tweaks into a single monthly service. We are a Portsmouth AIaaS provider — voice agent from £97/month, chatbot from £57/month, workflow automation project-priced. You get a working AI without hiring engineers, MLOps, or vendor managers.</div></div>
+            <div class="faq__answer"><div class="faq__answer-inner">AIaaS the way the Portsmouth dockyard buys infrastructure — a single per-month invoice that covers the build, the run, and the upkeep. As a Portsmouth AIaaS provider we deliver voice agent from £497 setup + £97/month, chatbot from £297 setup + £57/month, and project-priced workflow automation. UK hosting, prompt and tool tweaks included, no in-house ML team required.</div></div>
           </div>
           <div class="faq__item reveal">
             <button class="faq__question" aria-expanded="false">
               Best AIaaS companies for Portsmouth SMEs — what should we look for?
               <svg class="faq__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
             </button>
-            <div class="faq__answer"><div class="faq__answer-inner">Look for AIaaS providers who: (1) integrate with your real systems, not just chat embeds, (2) charge per result/seat, not per token, (3) handle the ongoing prompt and tool tweaks themselves, (4) provide warm human handoff when the AI hits an edge case, and (5) understand Portsmouth's mix of naval supply chain, NHS-adjacent businesses, university spinouts, and Portsea Island trades. We tick all five.</div></div>
+            <div class="faq__answer"><div class="faq__answer-inner">Five things matter when you pick a Portsmouth AIaaS partner: (1) the agent must integrate with your real systems (Gunwharf retail tills, dockyard supplier portals, NHS-adjacent EMRs) not just embed a chat box; (2) you should be charged per result or per seat, never per token; (3) the provider — not you — owns the ongoing prompt and tool tuning; (4) every edge case must hand off warm to a human in your team; (5) the provider should already understand Portsmouth's mix of naval supply chain, NHS-adjacent care, university spin-outs and Portsea Island trades. We tick all five.</div></div>
           </div>
         </div>
       </div>
@@ -2664,56 +2737,14 @@
         </div>
         <div class="contact__grid">
           <div class="contact__form-wrap reveal">
-                          <div class="qf-quick" id="qfQuick">
-                <p class="qf-quick__label">Or get a callback in 1 hour</p>
-                <form id="qfQuickForm" novalidate>
-                  <div class="qf-quick__row">
-                    <input type="tel" id="qfQuickPhone" name="phone" inputmode="tel" required placeholder="Your phone number" aria-label="Your phone number" />
-                    <button type="submit" id="qfQuickBtn">Call me back</button>
-                  </div>
-                  <div aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;">
-                    <label for="qfQuickWebsite">Website</label>
-                    <input type="text" id="qfQuickWebsite" name="website" tabindex="-1" autocomplete="off" />
-                  </div>
-                  <p class="qf-quick__hint">No long-term contracts. We reply within 1 hour Mon–Fri.</p>
-                  <p class="qf-quick__err" id="qfQuickErr" hidden></p>
-                </form>
-              </div>
-            <h3>Send Us a Message</h3>
-                        <div class="conv-form-trust">
-              <strong>Free 30-min discovery call.</strong> No sales pitch. We reply within 1 hour Mon–Fri 9–6.
-            </div>
-            <form id="contactForm" novalidate>
-              <!-- Honeypot -->
-              <div class="form__honeypot" aria-hidden="true">
-                <label for="website">Website</label>
-                <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
-              </div>
-              <input type="hidden" name="source" value="aiservicesportsmouth.co.uk">
-              <input type="hidden" name="city" value="Portsmouth">
-              <div class="form__group">
-                <label class="form__label" for="name">Name *</label>
-                <input class="form__input" type="text" id="name" name="name" required placeholder="Your name">
-              </div>
-              <div class="form__group">
-                <label class="form__label" for="email">Email *</label>
-                <input class="form__input" type="email" id="email" name="email" required placeholder="you@company.com">
-              </div>
-              <div class="form__group">
-                <label class="form__label" for="phone">Phone</label>
-                <input class="form__input" type="tel" id="phone" name="phone" placeholder="Your phone number">
-              </div>
-              <div class="form__group">
-                <label class="form__label" for="business">Business Name</label>
-                <input class="form__input" type="text" id="business" name="business" placeholder="Your business name">
-              </div>
-              <div class="form__group">
-                <label class="form__label" for="message">Tell us about your business</label>
-                <textarea class="form__textarea" id="message" name="message" placeholder="What challenges are you facing? What would you like to automate?"></textarea>
-              </div>
-              <button type="submit" class="form__submit">Send Message</button>
-              <div id="formToast" class="form__toast"></div>
-            </form>
+            <!-- n8n hosted form embed (self-hosted; allows iframe) -->
+            <iframe
+              src="https://auto.juxtarank.com/form/17d8ddcd-4860-4dde-bd4a-2de0adb518e2"
+              title="Contact AI Services Portsmouth"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              style="width:100%;min-height:1200px;border:1px solid #1e293b;border-radius:8px;background:#0a0f1c;display:block;padding:0;"
+              allow="clipboard-write"></iframe>
           </div>
           <div class="contact__cal reveal">
             <h3>Book Directly Into Our Calendar</h3>
@@ -2750,7 +2781,7 @@
         </div>
       </div>
       <div class="footer__partner">
-        Powered by <a href="https://www.antekautomation.com" target="_blank" rel="noopener noreferrer">Antek Automation</a> <span class="footer__partner-divider">|</span> <a href="https://retellai.com/partner/antek-automation" target="_blank" rel="noopener noreferrer">Certified Retell AI Partner</a> <span class="footer__partner-divider">|</span> Serving Portsmouth, Southsea, Havant, Waterlooville, Fareham, Gosport &amp; Hampshire
+        Powered by <a href="https://www.antekautomation.com" target="_blank" rel="noopener noreferrer">Antek Automation</a> <span class="footer__partner-divider">|</span> <a href="https://www.retellai.com/partner/antek-automation" target="_blank" rel="noopener noreferrer">Certified Retell AI Partner</a> <span class="footer__partner-divider">|</span> Serving Portsmouth, Southsea, Havant, Waterlooville, Fareham, Gosport &amp; Hampshire
       </div>
       <div class="footer__satellite-links">
         <p class="footer__satellite-label">We Also Serve:</p>
@@ -2871,7 +2902,47 @@
       /* Open Retell chat widget programmatically (used by Demo CTA) */
       window.openAntekChat = function() {
         if (window.gtag) gtag('event', 'chat_start', { page_town: window.__antek_town || 'unknown', cta_position: 'demo-cta' });
-        // Walk DOM looking for the Retell widget shadow host
+
+        function tryClickFab() {
+          var directSel = [
+            '#retell-widget-root button',
+            '#retell-widget-root [role="button"]',
+            '#retell-widget-root',
+            'retell-widget',
+            'retell-chat-widget',
+            '#retell-widget-fab',
+            '#retell-chat-widget-fab',
+            '[data-retell-widget]',
+            '[data-retell-fab]'
+          ];
+          for (var i = 0; i < directSel.length; i++) {
+            var el = document.querySelector(directSel[i]);
+            if (!el) continue;
+            var btn = (el.shadowRoot && el.shadowRoot.querySelector('button, [role="button"]'))
+                   || el.querySelector('button, [role="button"]')
+                   || (el.tagName === 'BUTTON' ? el : null);
+            if (btn && btn.click) { btn.click(); return true; }
+          }
+          var hostsAll = document.querySelectorAll('*');
+          for (var j = 0; j < hostsAll.length; j++) {
+            var h = hostsAll[j];
+            if (!h.shadowRoot) continue;
+            var tag = (h.tagName || '').toLowerCase();
+            if (tag.indexOf('cal') > -1) continue;
+            var b = h.shadowRoot.querySelector('button, [role="button"]');
+            if (b && b.click) { b.click(); return true; }
+          }
+          return false;
+        }
+
+        var attempts = 0;
+        (function poll() {
+          if (tryClickFab()) return;
+          if (++attempts > 8) return;
+          setTimeout(poll, 250);
+        })();
+        return;
+        // legacy walker preserved for reference only
         var hosts = document.querySelectorAll('*');
         for (var i = 0; i < hosts.length; i++) {
           if (hosts[i].shadowRoot) {
@@ -3016,6 +3087,7 @@
       /* ── Contact Form ────────────────────────────── */
       var form = document.getElementById('contactForm');
       var toast = document.getElementById('formToast');
+      if (!form || !toast) return;
       form.addEventListener('submit', function(e) {
         e.preventDefault();
 
@@ -3206,6 +3278,17 @@
 
 
   <!-- ═══ BOOKING POPUP ═══════════════════════════════ -->
+  <!-- BOOKING POPUP REMOVED — nav CTA + hero CTA scroll natively to #contact -->
+  <script>
+    (function () {
+      window.openBookingPopup = function () {
+        var c = document.getElementById('contact');
+        if (c) c.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      };
+    })();
+  </script>
+  <!-- LEGACY POPUP CODE INTENTIONALLY REMOVED — see commit log -->
+  <script style="display:none" type="text/plain" data-disabled="true">
   <div class="bp-modal" id="bpModal" role="dialog" aria-modal="true" aria-label="Book a free 30-minute discovery call" aria-hidden="true">
     <div class="bp-modal__card">
       <button type="button" class="bp-modal__close" id="bpClose" aria-label="Close">&times;</button>

@@ -9,11 +9,14 @@
   Header always unset X-Powered-By
 </IfModule>
 
-# Force HTTPS
+# Force HTTPS + canonicalise /index.html -> /
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteCond %{HTTPS} off
   RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  RewriteCond %{THE_REQUEST} \s/+(.*?)index\.html[\s?] [NC]
+  RewriteRule ^ /%1 [R=301,L,NE]
 </IfModule>
 
 # Custom 404
